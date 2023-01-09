@@ -1,4 +1,6 @@
 namespace tic_tac_toe {
+    type HTMLElementOrNull = HTMLElement | null;
+
     const saveKeyTicTacToeField:string = "stateGame";
     const saveKeyOldCountColumn:string = "sizeField";
     const saveKeyOldCountWinSymbol:string = "countWinSymbol";
@@ -16,12 +18,18 @@ namespace tic_tac_toe {
     const defaultMaxCountSymbolWin:number = defaultSizeTicTacToeField;
 
     const nameCountWinSymbolBlock:string = "tic-tac-toe-win-symbol";
-    const inputCountWinSymbol:HTMLInputElement = document.querySelector(`.${nameCountWinSymbolBlock}__input`);
-    const buttonUpCount:HTMLElement = document.querySelector(`.${nameCountWinSymbolBlock}__up-count`);
-    const buttonDownCount:HTMLElement = document.querySelector(`.${nameCountWinSymbolBlock}__down-count`);
-    const buttonMaxWinSymbol:HTMLElement = document.querySelector(`.${nameCountWinSymbolBlock}__max-count`);
-    const buttonMinWinSymbol:HTMLElement = document.querySelector(`.${nameCountWinSymbolBlock}__min-count`);
+    const inputCountWinSymbol:HTMLInputElement | null = document.querySelector(`.${nameCountWinSymbolBlock}__input`);
+    const buttonUpCount:HTMLElementOrNull = document.querySelector(`.${nameCountWinSymbolBlock}__up-count`);
+    const buttonDownCount:HTMLElementOrNull = document.querySelector(`.${nameCountWinSymbolBlock}__down-count`);
+    const buttonMaxWinSymbol:HTMLElementOrNull = document.querySelector(`.${nameCountWinSymbolBlock}__max-count`);
+    const buttonMinWinSymbol:HTMLElementOrNull = document.querySelector(`.${nameCountWinSymbolBlock}__min-count`);
 
+    const isNotFoundAllHTMlWinSymbolBlock = !buttonUpCount || !buttonDownCount
+        || !buttonMinWinSymbol || !buttonMaxWinSymbol || !inputCountWinSymbol;
+
+    if (isNotFoundAllHTMlWinSymbolBlock) {
+        throw new Error("Not found HTMLElement from " + nameCountWinSymbolBlock);
+    }
 
     buttonUpCount.addEventListener("click", function () : void {
         countWinSymbolController.increase();
@@ -42,15 +50,21 @@ namespace tic_tac_toe {
     const countWinSymbolController:NumberInput = new NumberInput(inputCountWinSymbol, defaultCountWinSymbols,
         defaultMaxCountSymbolWin, defaultCountWinSymbolStep);
 
-
     const nameResizedBlock:string = "tic-tac-toe-resize-field";
-    const inputCountColumnGrid:HTMLInputElement = document.querySelector(`.${nameResizedBlock}__input`);
-    const buttonUpSize:HTMLElement = document.querySelector(`.${nameResizedBlock}__up-size`);
-    const buttonDownSize:HTMLElement = document.querySelector(`.${nameResizedBlock}__down-size`);
-    const buttonMaxSize:HTMLElement = document.querySelector(`.${nameResizedBlock}__max-size`);
-    const buttonMinSize:HTMLElement = document.querySelector(`.${nameResizedBlock}__min-size`);
-    const buttonApplySetting:HTMLElement = document.querySelector(".tic-tac-toe-setting__apply-button");
+    const inputCountColumnGrid:HTMLInputElement | null = document.querySelector(`.${nameResizedBlock}__input`);
+    const buttonUpSize:HTMLElementOrNull = document.querySelector(`.${nameResizedBlock}__up-size`);
+    const buttonDownSize:HTMLElementOrNull = document.querySelector(`.${nameResizedBlock}__down-size`);
+    const buttonMaxSize:HTMLElementOrNull = document.querySelector(`.${nameResizedBlock}__max-size`);
+    const buttonMinSize:HTMLElementOrNull = document.querySelector(`.${nameResizedBlock}__min-size`);
+    const buttonApplySetting:HTMLElementOrNull = document.querySelector(".tic-tac-toe-setting__apply-button");
 
+    const isNotFoundAllHTMLResizeField = !inputCountColumnGrid || !buttonUpSize || !buttonUpSize
+        || !buttonDownSize || !buttonMaxSize
+        || !buttonMinSize || !buttonApplySetting;
+
+    if (isNotFoundAllHTMLResizeField) {
+        throw new Error("Not found HTMLElement from " + nameResizedBlock);
+    }
 
     const resizeController:NumberInput = new NumberInput(inputCountColumnGrid, defaultSizeTicTacToeField,
         defaultMaxCountColumn, defaultSizeStepGrid);
@@ -126,16 +140,24 @@ namespace tic_tac_toe {
         ticTacToeController.dynamicChangeField(allCells, countColumn, countRow);
     }
 
-    const gridTicTacToe:HTMLElement = document.querySelector(".tic-tac-toe-grid");
-    const resetButton:HTMLElement = document.querySelector(".tic-tac-toe-setting__reset-button");
-    const labelPlayerName:HTMLElement = document.querySelector(".tic-tac-toe-game__player-name");
-    const labelStatusStep:HTMLElement = document.querySelector(".tic-tac-toe-game__status-step");
+    const gridTicTacToe:HTMLElementOrNull = document.querySelector(".tic-tac-toe-grid");
+    const resetButton:HTMLElementOrNull = document.querySelector(".tic-tac-toe-setting__reset-button");
+    const labelPlayerName:HTMLElementOrNull = document.querySelector(".tic-tac-toe-game__player-name");
+    const labelStatusStep:HTMLElementOrNull = document.querySelector(".tic-tac-toe-game__status-step");
     const countColumnAndRow:number = resizeController.getValueControlledInput();
 
-    const labelGameFirstPlayerScore:HTMLElement = document.querySelector(".tic-tac-toe-analytic__game-score-x");
-    const labelGameSecondPlayerScore:HTMLElement = document.querySelector(".tic-tac-toe-analytic__game-score-o");
-    const labelSessionFirstPlayerScore:HTMLElement = document.querySelector(".tic-tac-toe-analytic__session-score-x");
-    const labelSessionSecondPlayerScore:HTMLElement = document.querySelector(".tic-tac-toe-analytic__session-score-o");
+    const labelGameFirstPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__game-score-x");
+    const labelGameSecondPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__game-score-o");
+    const labelSessionFirstPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__session-score-x");
+    const labelSessionSecondPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__session-score-o");
+
+    const isNotFoundAllHTMLTicTacToe = !gridTicTacToe || !resetButton || countColumnAndRow;
+    const isNotFoundAllLabels = !labelPlayerName || !labelStatusStep || !labelGameFirstPlayerScore
+        || !labelGameSecondPlayerScore || !labelSessionFirstPlayerScore || !labelSessionSecondPlayerScore;
+
+    if (isNotFoundAllHTMLTicTacToe || isNotFoundAllLabels) {
+        throw new Error("Not found HTMLElement from " + nameResizedBlock);
+    }
 
     const player1:Player = new Player("Player 1", "X");
     const player2:Player = new Player("Player 2", "O");
@@ -200,9 +222,12 @@ namespace tic_tac_toe {
 
     ticTacToeController.setOnLoad(() => {
         const isWin:boolean = ticTacToeController.isWin();
-
         if (isWin) {
-            StyleController.addStyleCells(ticTacToeController.getWinCell(), nameWinStyle);
+            const winCells = ticTacToeController.getWinCell()
+
+            if (!winCells) return;
+
+            StyleController.addStyleCells(winCells, nameWinStyle);
             ticTacToeController.lockInput();
             currentPlayerInfo.clear();
             statusStepInfo.setInfo(defaultPromptWin + " ");

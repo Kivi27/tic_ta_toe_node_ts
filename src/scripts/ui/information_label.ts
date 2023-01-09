@@ -10,7 +10,7 @@ namespace tic_tac_toe {
             this.infoLabel.textContent = text;
         }
 
-        public getInfo() : string {
+        public getInfo() : string | null {
             return this.infoLabel.textContent;
         }
 

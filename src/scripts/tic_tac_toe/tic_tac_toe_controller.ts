@@ -1,4 +1,7 @@
 namespace tic_tac_toe {
+
+    type HTMLElementsOrNull = HTMLElement[] | null;
+
     export class TicTacToeController implements Savable {
         private blockGame:boolean = false;
         private limitWin:number = 3;
@@ -9,11 +12,11 @@ namespace tic_tac_toe {
         private gameField:HTMLElement[][];
         private winCells:HTMLElement[];
 
-        private onWin: (winner:Player, winCells:HTMLElement[]) => void;
-        private onReset: (allCells:HTMLElement[][]) => void;
-        private onDraw: (allCells:HTMLElement[][]) => void;
-        private onUpdateUi: () => void;
-        private onLoad: () => void;
+        private onWin: ((winner: Player, winCells: HTMLElement[]) => void) | undefined;
+        private onReset: ((allCells: HTMLElement[][]) => void) | undefined;
+        private onDraw: ((allCells: HTMLElement[][]) => void) | undefined;
+        private onUpdateUi: (() => void) | undefined;
+        private onLoad: (() => void) | undefined;
 
         constructor(cells:HTMLElement[], countRow:number, countColumn:number, players:Player[]) {
             this.countRow = countRow;
@@ -21,6 +24,7 @@ namespace tic_tac_toe {
             this.players = players;
             this.currentPlayer = this.players[0];
             this.winCells = [];
+            this.gameField = [];
             this.createField(cells);
         }
 
@@ -43,7 +47,7 @@ namespace tic_tac_toe {
 
             for (let i:number = 0; i < this.countRow; i++) {
                 for (let j:number = 0; j < this.countColumn; j++) {
-                    const currentValue:string = this.gameField[i][j].textContent;
+                    const currentValue:string | null = this.gameField[i][j].textContent;
 
                     if (currentValue === "") {
                         isFill = false;
@@ -61,8 +65,10 @@ namespace tic_tac_toe {
                     this.gameField[i][j].textContent = "";
                 }
             }
-
             this.currentPlayer = this.players[0];
+
+            if (!this.onReset || !this.onUpdateUi) return;
+
             this.onReset(this.gameField);
             this.onUpdateUi();
             this.unlockInput();
@@ -75,7 +81,11 @@ namespace tic_tac_toe {
                 field[i] = new Array(this.countColumn);
 
                 for (let j = 0; j < this.countColumn; j++) {
-                    field[i][j] = this.gameField[i][j].textContent;
+                    const cellContext = this.gameField[i][j].textContent;
+
+                    if (cellContext != null) {
+                        field[i][j] = cellContext;
+                    }
                 }
             }
             return field;
@@ -151,6 +161,9 @@ namespace tic_tac_toe {
         public setStateSave(saveState:any) : void {
             this.setImageField(saveState.stateField);
             this.setCurrentPlayer(saveState.indexCurrentPlayer);
+
+            if (!this.onLoad || !this.onUpdateUi) return;
+
             this.onLoad();
             this.onUpdateUi();
         }
@@ -163,7 +176,7 @@ namespace tic_tac_toe {
             }
         }
 
-        public getWinCell() : HTMLElement[] {
+        public getWinCell() : HTMLElement[] | null {
             return this.winCells.length === this.limitWin
                 ? this.winCells
                 : null;
@@ -177,7 +190,7 @@ namespace tic_tac_toe {
             this.blockGame = false;
         }
 
-        public collectWinElementsHorizontal(player:Player) : HTMLElement[] {
+        public collectWinElementsHorizontal(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             rowLoop: for (let i:number = 0; i < this.countRow; i++) {
@@ -195,7 +208,7 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinElementsVertical(player:Player) : HTMLElement[] {
+        public collectWinElementsVertical(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             columnLoop: for (let j:number = 0; j < this.countColumn; j++) {
@@ -213,12 +226,12 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinMainDiagonal(player:Player) : HTMLElement[] {
+        public collectWinMainDiagonal(player:Player) : HTMLElementsOrNull {
             return this.collectWinElementUpperMainDiagonal(player)
                 || this.collectWinElementDownMainDiagonal(player);
         }
 
-        public collectWinElementUpperMainDiagonal(player:Player) : HTMLElement[] {
+        public collectWinElementUpperMainDiagonal(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             diagonalLoop: for (let numberDiagonal:number = 0; numberDiagonal < this.countColumn; numberDiagonal++) {
@@ -238,7 +251,7 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinElementDownMainDiagonal(player:Player) : HTMLElement[] {
+        public collectWinElementDownMainDiagonal(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             diagonalLoop: for (let numberDiagonal:number = 1; numberDiagonal < this.countRow; numberDiagonal++) {
@@ -258,12 +271,12 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinSlayerDiagonal(player:Player) : HTMLElement[] {
+        public collectWinSlayerDiagonal(player:Player) : HTMLElementsOrNull {
             return this.collectWinSlayerUpperDiagonal(player)
                 || this.collectWinSlayerDownDiagonal(player);
         }
 
-        public collectWinSlayerUpperDiagonal(player:Player) : HTMLElement[] {
+        public collectWinSlayerUpperDiagonal(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             diagonalLoop: for (let numberDiagonal:number = this.countColumn - 1; numberDiagonal >= 0; numberDiagonal--) {
@@ -283,7 +296,7 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinSlayerDownDiagonal(player:Player) : HTMLElement[] {
+        public collectWinSlayerDownDiagonal(player:Player) : HTMLElementsOrNull {
             const playerSymbol:string = player.getGameSymbol();
 
             diagonalLoop: for (let numberDiagonal:number = 1; numberDiagonal < this.countRow; numberDiagonal++) {
@@ -303,7 +316,7 @@ namespace tic_tac_toe {
             return this.getWinCell();
         }
 
-        public collectWinElements(player:Player) : HTMLElement[] {
+        public collectWinElements(player:Player) : HTMLElementsOrNull {
             return this.collectWinElementsHorizontal(player)
                 || this.collectWinElementsVertical(player)
                 || this.collectWinMainDiagonal(player)
@@ -325,6 +338,8 @@ namespace tic_tac_toe {
             pressedButton.textContent = this.currentPlayer.getGameSymbol();
             const isWin:boolean = this.isWin();
 
+            if (!this.onWin || !this.onUpdateUi || !this.onDraw) return;
+
             if (isWin) {
                 this.lockInput();
                 this.onWin(this.currentPlayer, this.winCells);
@@ -340,7 +355,7 @@ namespace tic_tac_toe {
             }
         }
 
-        public checkCellAvailable(pressedButton) : boolean {
+        public checkCellAvailable(pressedButton:any) : boolean {
             const isGameUnlock:boolean = !this.blockGame;
             const isCellEmpty:boolean = pressedButton.textContent === "";
 

@@ -3,7 +3,7 @@ namespace tic_tac_toe {
 
         private readonly player:Player;
         private labelScore:HTMLElement;
-        private onUpdateUi: () => void;
+        private onUpdateUi: (() => void) | undefined;
 
         constructor(labelScore:HTMLElement, player: Player) {
             this.labelScore = labelScore;
@@ -20,6 +20,9 @@ namespace tic_tac_toe {
 
         public setLabelScoreValue(newValue:string) : void {
             this.labelScore.textContent = newValue;
+
+            if (!this.onUpdateUi) return;
+
             this.onUpdateUi();
         }
 

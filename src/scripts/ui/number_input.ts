@@ -2,9 +2,9 @@ namespace tic_tac_toe {
     export class NumberInput {
 
         private controlledInput:HTMLInputElement;
-        private lowerLimit:number;
-        private upperLimit:number;
-        private valueStep:number;
+        private lowerLimit:number = 0;
+        private upperLimit:number = 0;
+        private readonly valueStep:number = 0;
 
         constructor(controlledInput:HTMLInputElement, lowerLimit:number, upperLimit:number, valueStep:number) {
             this.controlledInput = controlledInput;

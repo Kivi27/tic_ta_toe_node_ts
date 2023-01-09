@@ -6,8 +6,12 @@ namespace tic_tac_toe {
             localStorage.setItem(keySave, JSON.stringify(saveState));
         }
 
-        static loadObj(keySave, saveObj:Savable) : void {
-            const saveState = JSON.parse(localStorage.getItem(keySave));
+        static loadObj(keySave:string, saveObj:Savable) : void {
+            const objFromStorage:null | string = localStorage.getItem(keySave);
+
+            if (objFromStorage == null) return;
+
+            const saveState = JSON.parse(objFromStorage);
             saveObj.setStateSave(saveState);
         }
     }
