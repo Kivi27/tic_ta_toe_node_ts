@@ -292,11 +292,17 @@ namespace tic_tac_toe {
 
         if (!oldSizeField) {
             localStorage.setItem(saveKeyOldCountColumn, String(defaultSizeTicTacToeField));
-        } else if (!oldCountWinSymbol) {
-            localStorage.setItem(saveKeyOldCountColumn, String(defaultCountWinSymbols));
-        } else if (localStorage.getItem(saveKeyTicTacToeField) && localStorage.getItem(saveKeyOldCountWinSymbol)) {
+        }
+
+        if (!oldCountWinSymbol) {
+            localStorage.setItem(saveKeyOldCountWinSymbol, String(defaultCountWinSymbols));
+        }
+
+        if (localStorage.getItem(saveKeyTicTacToeField)) {
+            countWinSymbolController.setUpperLimit(oldSizeField);
             countWinSymbolController.setValueControlledInput(oldCountWinSymbol);
             resizeController.setValueControlledInput(oldSizeField);
+            ticTacToeController.setLimitWin(Number(countWinSymbolController.getValidateInput()));
             changeSizeTicTacToe(oldSizeField, oldSizeField);
             Saver.loadObj(saveKeyTicTacToeField, ticTacToeController);
         }
