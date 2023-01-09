@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/Kivi27/tic_tac_toe_node_ts#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "rimraf": "^3.0.2",
     "typescipt": "^1.0.0"
   }
 }
