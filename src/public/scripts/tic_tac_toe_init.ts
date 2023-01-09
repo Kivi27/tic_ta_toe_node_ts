@@ -151,7 +151,7 @@ namespace tic_tac_toe {
     const labelSessionFirstPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__session-score-x");
     const labelSessionSecondPlayerScore:HTMLElementOrNull = document.querySelector(".tic-tac-toe-analytic__session-score-o");
 
-    const isNotFoundAllHTMLTicTacToe = !gridTicTacToe || !resetButton || countColumnAndRow;
+    const isNotFoundAllHTMLTicTacToe = !gridTicTacToe || !resetButton;
     const isNotFoundAllLabels = !labelPlayerName || !labelStatusStep || !labelGameFirstPlayerScore
         || !labelGameSecondPlayerScore || !labelSessionFirstPlayerScore || !labelSessionSecondPlayerScore;
 
