@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/app.js"
+    "collectPublic": "copyfiles -u 1 ./src/public/* ./src/public/css/* ./build",
+    "start": "npm run build && npm run collectPublic && node build/app.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2",
     "typescipt": "^1.0.0"
   }
 }
