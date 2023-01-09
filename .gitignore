@@ -105,3 +105,6 @@ dist
 
 #setting ide
 .idea/
+
+#ignore build
+build/
