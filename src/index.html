@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tic-Tac-Toe</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="../build/tic_tac_toe/player.js"></script>
+    <script src="../build/tic_tac_toe/tic_tac_toe_controller.js"></script>
+    <script src="../build/ui/grid_controller.js"></script>
+    <script src="../build/ui/information_label.js"></script>
+    <script src="../build/ui/number_input.js"></script>
+    <script src="../build/ui/saver.js"></script>
+    <script src="../build/ui/score.js"></script>
+    <script src="../build/ui/style_controller.js"></script>
+
+</head>
+<body class="body">
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">tic-tac-toe game</h1>
+        </header>
+        <main class="main">
+            <div class="tic-tac-toe-game">
+                <section class="tic-tac-toe-field">
+                    <div class="tic-tac-toe-grid">
+                    </div>
+                    <div class="tic-tac-toe-game__about-game tic-tac-toe-game__common-style">
+                        <span class="tic-tac-toe-game__status-step">Player's turn:</span>
+                        <span class="tic-tac-toe-game__player-name"></span>
+                    </div>
+                </section>
+                <section class="tic-tac-toe-setting">
+                    <div class="tic-tac-toe-setting__common-block">
+                        <div class="tic-tac-toe-win-symbol center-vertical-column">
+                            <div>Enter the number of symbols to win</div>
+                            <div class="tic-tac-toe-win-symbol__input-count center-horizontal-column">
+                                <button class="tic-tac-toe-win-symbol__min-count tic-tac-toe-setting__common-button">Min</button>
+                                <button class="tic-tac-toe-win-symbol__down-count tic-tac-toe-setting__common-button">-1</button>
+                                <label>
+                                    <input type="number" class="tic-tac-toe-win-symbol__input tic-tac-toe-setting__common-input"
+                                           placeholder="2" value="2">
+                                </label>
+                                <button class="tic-tac-toe-win-symbol__up-count tic-tac-toe-setting__common-button">+1</button>
+                                <button class="tic-tac-toe-win-symbol__max-count tic-tac-toe-setting__common-button">Max</button>
+                            </div>
+                        </div>
+                        <div class="tic-tac-toe-resize-field center-vertical-column">
+                            <div>Enter the count column</div>
+                            <div class="tic-tac-toe-resize-field__input-size center-horizontal-column">
+                                <button class="tic-tac-toe-resize-field__min-size tic-tac-toe-setting__common-button">Min</button>
+                                <button class="tic-tac-toe-resize-field__down-size tic-tac-toe-setting__common-button">-10</button>
+                                <label>
+                                    <input type="number" class="tic-tac-toe-resize-field__input tic-tac-toe-setting__common-input"
+                                           placeholder="3" value="3">
+                                </label>
+                                <button class="tic-tac-toe-resize-field__up-size tic-tac-toe-setting__common-button">+10</button>
+                                <button class="tic-tac-toe-resize-field__max-size tic-tac-toe-setting__common-button">Max</button>
+                            </div>
+                        </div>
+                        <button class="tic-tac-toe-setting__apply-button tic-tac-toe-resize-field__button
+                                tic-tac-toe-setting__common-button">Apply</button>
+                    </div>
+                    <div class="tic-tac-toe-analytic tic-tac-toe-setting__common-block">
+                        <div class="tic-tac-toe-analytic__info-game">
+                            <span class="tic-tac-toe-analytic__title">Analytic for game</span>
+                            <span>Win X: <span class="tic-tac-toe-analytic__game-score-x">0</span></span>
+                            <span>Win O: <span class="tic-tac-toe-analytic__game-score-o">0</span></span>
+                        </div>
+                        <div class="tic-tac-toe-analytic__info-game">
+                            <span class="tic-tac-toe-analytic__title">Analytic for session</span>
+                            <span>Win X: <span class="tic-tac-toe-analytic__session-score-x">0</span></span>
+                            <span>Win O: <span class="tic-tac-toe-analytic__session-score-o">0</span></span>
+                        </div>
+                    </div>
+                    <button class="tic-tac-toe-setting__reset-button tic-tac-toe-game__common-style
+                            tic-tac-toe-setting__common-button">reset game</button>
+                </section>
+            </div>
+        </main>
+        <footer class="footer">
+            <p class="footer__author">
+                Created by Liashenko Rostyslav
+            </p>
+            <p class="footer__policy">
+                All rights reserved 2023 &#169
+            </p>
+        </footer>
+    </div>
+    <script src="../build/tic_tac_toe_init.js"></script>
+</body>
+</html>

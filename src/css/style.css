@@ -1,0 +1,222 @@
+:root {
+    --brand-primary-darken-color: #0B6158;
+    --brand-primary-color: #14BDAC;
+    --cell-border-color: #0DA192;
+    --cell-border-width: 2px;
+    --primary-color: #FFFFFF;
+    --ui-background-color: #0f7d71;
+    --win-color: #FAE20A;
+    --draw-color: #DE0DB8;
+    --hover-reset-button-color: #FAE20A;
+    --analytic-title-color: #00FF73;
+}
+
+.body {
+    height: 100vh;
+    background-color: var(--brand-primary-color);
+    color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1920px;
+    margin: 0 auto;
+    font-family: 'Comic Sans MS', serif;
+    font-weight: 700;
+}
+
+.center-vertical-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 0;
+}
+
+.center-horizontal-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header__title {
+    padding: 40px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.tic-tac-toe-game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px 60px;
+}
+
+.tic-tac-toe-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tic-tac-toe-game__about-game {
+    width: 310px;
+}
+
+.tic-tac-toe-game__common-style {
+    padding: 20px;
+    font-size: 1.5rem;
+    font-family: "Comic Sans MS", serif;
+    font-weight: 700;
+    text-align: center;
+    color: var(--primary-color);
+    background-color: var(--ui-background-color);
+}
+
+.tic-tac-toe-grid {
+    display: grid;
+    grid-template: 100px 100px 100px / 100px 100px 100px;
+}
+
+.tic_tac-toe__сell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.tic-tac-toe__button {
+    width: 100%;
+    height: 100%;
+    font-weight: 800;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+}
+
+.tic-tac-toe__button:hover {
+    cursor: pointer;
+}
+
+.tic-tac-toe__cell_right-border {
+    border-right: var(--cell-border-width) solid var(--cell-border-color);
+}
+
+.tic-tac-toe__cell_left-border {
+    border-left: var(--cell-border-width) solid var(--cell-border-color);
+}
+
+.tic-tac-toe__cell_bottom-border {
+    border-bottom: var(--cell-border-width) solid var(--cell-border-color);
+}
+
+.tic-tac-toe__cell_top-border {
+    border-top: var(--cell-border-width) solid var(--cell-border-color);
+}
+
+.tic-tac-toe__сell_win {
+    color: var(--win-color);
+}
+
+.tic-tac-toe__cell_draw {
+    color: var(--draw-color);
+}
+
+.tic-tac-toe-setting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.tic-tac-toe-setting__common-button {
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: var(--brand-primary-darken-color);
+}
+
+.tic-tac-toe-setting__common-button:hover {
+    cursor: pointer;
+    color: var(--hover-reset-button-color);
+}
+
+.tic-tac-toe-setting__common-input {
+    width: 70px;
+    border: none;
+    padding: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* TODO: ask the mentor */
+
+.tic-tac-toe-setting__common-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.tic-tac-toe-setting__common-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.tic-tac-toe-setting__common-input {
+    -moz-appearance: textfield;
+}
+
+.tic-tac-toe-setting__reset-button {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.tic-tac-toe-setting__common-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    font-size: 2rem;
+    border-radius: 25px;
+    background-color: var(--ui-background-color);
+}
+
+.tic-tac-toe-resize-field__input-size {
+    width: 100%;
+}
+
+
+.tic-tac-toe-resize-field__button-change-size {
+    width: 35%;
+}
+
+.tic-tac-toe-setting__apply-button {
+    width: 100%;
+}
+
+.tic-tac-toe-analytic__info-game {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tic-tac-toe-analytic__title {
+    text-align: center;
+    color: var(--analytic-title-color);
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+}
