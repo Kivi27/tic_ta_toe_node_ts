@@ -224,27 +224,31 @@ namespace tic_tac_toe {
         const isWin:boolean = ticTacToeController.isWin();
         if (isWin) {
             const winCells = ticTacToeController.getWinCell()
+            const nameWinner = ticTacToeController.getCurrentPlayer().getName();
 
             if (!winCells) return;
 
-            StyleController.addStyleCells(winCells, nameWinStyle);
             ticTacToeController.lockInput();
-            currentPlayerInfo.clear();
-            statusStepInfo.setInfo(defaultPromptWin + " ");
-        }
+            StyleController.addStyleCells(winCells, nameWinStyle);
+            setStatusInfo(defaultPromptWin + " " + nameWinner);
+        } else {
+            const isDraw:boolean = ticTacToeController.isFieldFill();
 
-        const isDraw:boolean = ticTacToeController.isFieldFill();
-
-        if (isDraw) {
-            const gameField:HTMLElement[][] = ticTacToeController.getField();
-            displayDraw(gameField);
+            if (isDraw) {
+                const gameField:HTMLElement[][] = ticTacToeController.getField();
+                displayDraw(gameField);
+            }
         }
     });
 
+    function setStatusInfo(text:string) : void {
+        statusStepInfo.setInfo(text);
+        currentPlayerInfo.clear();
+    }
+
     function displayDraw(allCells:HTMLElement[][]) : void {
         StyleController.addStyleField(allCells, nameDrawStyle);
-        statusStepInfo.setInfo(defaultPromptDraw);
-        currentPlayerInfo.clear();
+        setStatusInfo(defaultPromptDraw);
     }
 
     ticTacToeController.setOnUpdateUi(() => {

@@ -165,7 +165,6 @@ namespace tic_tac_toe {
             if (!this.onLoad || !this.onUpdateUi) return;
 
             this.onLoad();
-            this.onUpdateUi();
         }
 
         private addWinCellOrClear(cell:HTMLElement, playerSymbol:string) : void {
