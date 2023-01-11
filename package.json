@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf ./build && tsc",
-    "collectPublic": "copyfiles -u 1 ./src/public/* ./src/public/css/* ./build",
-    "start": "npm run build && npm run collectPublic && node build/app.js"
+    "startWebpack": "webpack",
+    "build": "tsc && npm run startWebpack",
+    "start": "npm run build && node build/app.js"
   },
   "repository": {
     "type": "git",

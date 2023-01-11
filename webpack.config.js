@@ -6,7 +6,8 @@ module.exports = {
         rules: []
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'index_bundle.js'
-    }
+        path: path.resolve(__dirname, './build/public/scripts'),
+        filename: 'tic_tac_toe_bundle.js'
+    },
+    mode: 'production'
 };

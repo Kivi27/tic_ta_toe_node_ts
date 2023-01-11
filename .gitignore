@@ -107,4 +107,4 @@ dist
 .idea/
 
 #ignore build
-build/
+build/public/scripts/
