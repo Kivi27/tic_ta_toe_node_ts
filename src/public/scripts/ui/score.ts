@@ -1,33 +1,33 @@
-namespace tic_tac_toe {
-    export class Score {
+import { Player } from "../tic_tac_toe/player";
 
-        private readonly player:Player;
-        private labelScore:HTMLElement;
-        private onUpdateUi: (() => void) | undefined;
+export class Score {
 
-        constructor(labelScore:HTMLElement, player: Player) {
-            this.labelScore = labelScore;
-            this.player = player;
-        }
+    private readonly player: Player;
+    private labelScore: HTMLElement;
+    private onUpdateUi: (() => void) | undefined;
 
-        public setOnUpdateUi(callback: () => void) : void {
-            this.onUpdateUi = callback;
-        }
+    constructor(labelScore: HTMLElement, player: Player) {
+        this.labelScore = labelScore;
+        this.player = player;
+    }
 
-        public getLabelScoreValue() : number {
-            return Number(this.labelScore.textContent);
-        }
+    public setOnUpdateUi(callback: () => void): void {
+        this.onUpdateUi = callback;
+    }
 
-        public setLabelScoreValue(newValue:string) : void {
-            this.labelScore.textContent = newValue;
+    public getLabelScoreValue(): number {
+        return Number(this.labelScore.textContent);
+    }
 
-            if (!this.onUpdateUi) return;
+    public setLabelScoreValue(newValue: string): void {
+        this.labelScore.textContent = newValue;
 
-            this.onUpdateUi();
-        }
+        if (!this.onUpdateUi) return;
 
-        public getPlayer() : Player {
-            return this.player;
-        }
+        this.onUpdateUi();
+    }
+
+    public getPlayer(): Player {
+        return this.player;
     }
 }

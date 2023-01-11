@@ -1,18 +1,18 @@
-namespace tic_tac_toe {
-    export class Saver {
+import { Savable } from "./savable";
 
-        public static saveObj(keySave:string, saveObj:Savable) : void {
-            const saveState = saveObj.getStateSave();
-            localStorage.setItem(keySave, JSON.stringify(saveState));
-        }
+export class Saver {
 
-        static loadObj(keySave:string, saveObj:Savable) : void {
-            const objFromStorage:null | string = localStorage.getItem(keySave);
+    public static saveObj(keySave: string, saveObj: Savable): void {
+        const saveState = saveObj.getStateSave();
+        localStorage.setItem(keySave, JSON.stringify(saveState));
+    }
 
-            if (objFromStorage == null) return;
+    static loadObj(keySave: string, saveObj: Savable): void {
+        const objFromStorage: null | string = localStorage.getItem(keySave);
 
-            const saveState = JSON.parse(objFromStorage);
-            saveObj.setStateSave(saveState);
-        }
+        if (objFromStorage == null) return;
+
+        const saveState = JSON.parse(objFromStorage);
+        saveObj.setStateSave(saveState);
     }
 }
